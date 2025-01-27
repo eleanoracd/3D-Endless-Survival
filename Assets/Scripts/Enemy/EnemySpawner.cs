@@ -78,7 +78,6 @@ public class EnemySpawner : MonoBehaviour
                 {
                     float distanceToPlayer = Vector3.Distance(playerTransform.position, enemy.transform.position);
 
-    
                     if (distanceToPlayer > playerRadius)
                     {
                         StartCoroutine(DelayedReturnToPool(enemy));

@@ -3,18 +3,16 @@ using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
-    public int PoolSize => poolSize;
-
     [Header("Pool Settings")]
     [SerializeField] private GameObject prefab;
-    [SerializeField] private int poolSize = 20;
+    [SerializeField] private int initialPoolSize = 20;
 
     private Queue<GameObject> pool = new Queue<GameObject>();
     private List<GameObject> activeObjects = new List<GameObject>();
 
     private void Start()
     {
-        for (int i = 0; i < poolSize; i++)
+        for (int i = 0; i < initialPoolSize; i++)
         {
             GameObject obj = Instantiate(prefab);
             obj.SetActive(false);
@@ -25,6 +23,7 @@ public class ObjectPool : MonoBehaviour
     public GameObject GetObject(Vector3 position, Quaternion rotation)
     {
         GameObject obj;
+
         if (pool.Count > 0)
         {
             obj = pool.Dequeue();
@@ -56,5 +55,6 @@ public class ObjectPool : MonoBehaviour
         pool.Enqueue(obj);
         activeObjects.Remove(obj);
     }
+
     public IEnumerable<GameObject> ActiveObjects => activeObjects;
 }

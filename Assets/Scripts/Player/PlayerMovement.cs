@@ -77,4 +77,14 @@ public class PlayerMovement : MonoBehaviour
             movementVelocity.y -= gravity * Time.deltaTime;
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        EnemyAI enemyAI = other.GetComponent<EnemyAI>();
+        if (enemyAI != null)
+        {
+            this.enabled = false;
+            Debug.Log("You died!");
+        }
+    }
 }
