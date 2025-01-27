@@ -51,5 +51,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "3D-Endless survival.sln"
+    "dotnet.defaultSolution": "3D-Endless survival.sln",
+    "FSharp.suggestGitignore": false
 }
