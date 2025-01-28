@@ -10,6 +10,9 @@ public class PlayerCameraController : MonoBehaviour
     [Header("Input Actions")]
     [SerializeField] private InputActionAsset playerInputActions;
 
+    [Header("Player Settings")]
+    [SerializeField] private PlayerMovement playerMovement;
+
     [SerializeField] private Camera playerCamera;
 
     private InputAction lookAction;
@@ -19,6 +22,7 @@ public class PlayerCameraController : MonoBehaviour
     {
         var playerMap = playerInputActions.FindActionMap("Player");
         lookAction = playerMap.FindAction("Look");
+        Cursor.visible = false;
     }
 
     private void OnEnable()
@@ -34,6 +38,11 @@ public class PlayerCameraController : MonoBehaviour
     private void Update()
     {
         HandleRotation();
+
+        if (!playerMovement.enabled)
+        {
+            Cursor.visible = true;
+        }
     }
 
     private void HandleRotation()
